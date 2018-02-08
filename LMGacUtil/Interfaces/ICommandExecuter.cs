@@ -13,6 +13,7 @@ namespace LMGacUtil.Interfaces
         void AddUpdateObserver(ICommandExecuterObserver observer);
         void RemoveUpdateObserver(ICommandExecuterObserver observer);
         void ExecuteCommand(string FileName, string srguments, Action<string> callback);
+        string ExecuteCommand(string FileName, string srguments);
 
     }
 
