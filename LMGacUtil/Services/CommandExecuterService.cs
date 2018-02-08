@@ -67,22 +67,7 @@ namespace LMGacUtil.Services
 
                 b.ReportProgress(0, "Executing " + srguments);
 
-                // Start the child process.
-                Process p = new Process();
-                // Redirect the output stream of the child process.
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.FileName = FileName;
-                p.StartInfo.Arguments = srguments;
-                p.StartInfo.CreateNoWindow = true;
-                p.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(850);
-                p.Start();
-                // Do not wait for the child process to exit before
-                // reading to the end of its redirected stream.
-                // p.WaitForExit();
-                // Read the output stream first and then wait.
-                string output = p.StandardOutput.ReadToEnd();
-                p.WaitForExit();
+                var output = Execute(FileName, srguments);
 
                 b.ReportProgress(100, output);
 
@@ -105,6 +90,41 @@ namespace LMGacUtil.Services
             });
 
             bw.RunWorkerAsync();
+        }
+
+        public string ExecuteCommand(string FileName, string srguments)
+        {
+
+            return Execute(FileName, srguments);
+
+        }
+
+        private string Execute(string FileName, string srguments)
+        {
+
+            Update(srguments);
+
+            // Start the child process.
+            Process p = new Process();
+            // Redirect the output stream of the child process.
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.FileName = FileName;
+            p.StartInfo.Arguments = srguments;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(850);
+            p.Start();
+            // Do not wait for the child process to exit before
+            // reading to the end of its redirected stream.
+            // p.WaitForExit();
+            // Read the output stream first and then wait.
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+
+            Update(output);
+
+            return output;
+
         }
 
 

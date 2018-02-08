@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControl\GacDllListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\MyDll.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,9 +60,15 @@
     </Compile>
     <Compile Include="Interfaces\ICommandExecuter.cs" />
     <Compile Include="Interfaces\ICommandExecuterObserver.cs" />
+    <Compile Include="Interfaces\IDirectoryHelper.cs" />
+    <Compile Include="Interfaces\IGacDllEntity.cs" />
+    <Compile Include="Interfaces\IGacHelper.cs" />
+    <Compile Include="Interfaces\MyDllObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CommandExecuterService.cs" />
+    <Compile Include="Services\DirectoryHelperService.cs" />
+    <Compile Include="Services\GacHelperService.cs" />
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
