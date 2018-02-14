@@ -31,6 +31,7 @@ namespace LMGacUtil
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.BtnInstallCom = new System.Windows.Forms.Button();
             this.LblListMessage = new System.Windows.Forms.Label();
             this.btnLogClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@ namespace LMGacUtil
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.BtnInstallCom);
             this.splitContainer1.Panel1.Controls.Add(this.LblListMessage);
             this.splitContainer1.Panel1.Controls.Add(this.btnLogClear);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -73,9 +75,20 @@ namespace LMGacUtil
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtLog);
-            this.splitContainer1.Size = new System.Drawing.Size(556, 434);
-            this.splitContainer1.SplitterDistance = 261;
+            this.splitContainer1.Size = new System.Drawing.Size(719, 440);
+            this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 12;
+            // 
+            // BtnInstallCom
+            // 
+            this.BtnInstallCom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnInstallCom.Location = new System.Drawing.Point(641, 152);
+            this.BtnInstallCom.Name = "BtnInstallCom";
+            this.BtnInstallCom.Size = new System.Drawing.Size(75, 23);
+            this.BtnInstallCom.TabIndex = 16;
+            this.BtnInstallCom.Text = "Intall&Com+";
+            this.BtnInstallCom.UseVisualStyleBackColor = true;
+            this.BtnInstallCom.Click += new System.EventHandler(this.button1_Click);
             // 
             // LblListMessage
             // 
@@ -84,7 +97,7 @@ namespace LMGacUtil
             this.LblListMessage.BackColor = System.Drawing.SystemColors.Control;
             this.LblListMessage.Location = new System.Drawing.Point(3, 36);
             this.LblListMessage.Name = "LblListMessage";
-            this.LblListMessage.Size = new System.Drawing.Size(469, 13);
+            this.LblListMessage.Size = new System.Drawing.Size(632, 13);
             this.LblListMessage.TabIndex = 15;
             this.LblListMessage.Text = "label2";
             this.LblListMessage.Click += new System.EventHandler(this.LblListMessage_Click);
@@ -92,7 +105,7 @@ namespace LMGacUtil
             // btnLogClear
             // 
             this.btnLogClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogClear.Location = new System.Drawing.Point(478, 152);
+            this.btnLogClear.Location = new System.Drawing.Point(641, 181);
             this.btnLogClear.Name = "btnLogClear";
             this.btnLogClear.Size = new System.Drawing.Size(75, 23);
             this.btnLogClear.TabIndex = 7;
@@ -111,7 +124,7 @@ namespace LMGacUtil
             // btnCheck
             // 
             this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheck.Location = new System.Drawing.Point(478, 36);
+            this.btnCheck.Location = new System.Drawing.Point(641, 36);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(75, 23);
             this.btnCheck.TabIndex = 6;
@@ -125,7 +138,7 @@ namespace LMGacUtil
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilter.Location = new System.Drawing.Point(48, 10);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(424, 20);
+            this.txtFilter.Size = new System.Drawing.Size(587, 20);
             this.txtFilter.TabIndex = 11;
             this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
@@ -137,7 +150,7 @@ namespace LMGacUtil
             this.mylist.CheckBoxes = true;
             this.mylist.Location = new System.Drawing.Point(3, 52);
             this.mylist.Name = "mylist";
-            this.mylist.Size = new System.Drawing.Size(469, 180);
+            this.mylist.Size = new System.Drawing.Size(632, 183);
             this.mylist.TabIndex = 5;
             this.mylist.UseCompatibleStateImageBehavior = false;
             this.mylist.View = System.Windows.Forms.View.Details;
@@ -145,7 +158,7 @@ namespace LMGacUtil
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(478, 10);
+            this.btnRefresh.Location = new System.Drawing.Point(641, 10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 10;
@@ -156,7 +169,7 @@ namespace LMGacUtil
             // btnIIsRestart
             // 
             this.btnIIsRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIIsRestart.Location = new System.Drawing.Point(478, 123);
+            this.btnIIsRestart.Location = new System.Drawing.Point(641, 123);
             this.btnIIsRestart.Name = "btnIIsRestart";
             this.btnIIsRestart.Size = new System.Drawing.Size(75, 23);
             this.btnIIsRestart.TabIndex = 13;
@@ -167,7 +180,7 @@ namespace LMGacUtil
             // btnUnstall
             // 
             this.btnUnstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnstall.Location = new System.Drawing.Point(478, 94);
+            this.btnUnstall.Location = new System.Drawing.Point(641, 94);
             this.btnUnstall.Name = "btnUnstall";
             this.btnUnstall.Size = new System.Drawing.Size(75, 23);
             this.btnUnstall.TabIndex = 8;
@@ -178,7 +191,7 @@ namespace LMGacUtil
             // btnInstall
             // 
             this.btnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInstall.Location = new System.Drawing.Point(478, 65);
+            this.btnInstall.Location = new System.Drawing.Point(641, 65);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(75, 23);
             this.btnInstall.TabIndex = 9;
@@ -199,7 +212,7 @@ namespace LMGacUtil
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(550, 163);
+            this.txtLog.Size = new System.Drawing.Size(713, 166);
             this.txtLog.TabIndex = 6;
             this.txtLog.Text = "Inicializado";
             // 
@@ -207,7 +220,7 @@ namespace LMGacUtil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 458);
+            this.ClientSize = new System.Drawing.Size(743, 464);
             this.Controls.Add(this.splitContainer1);
             this.MinimumSize = new System.Drawing.Size(250, 360);
             this.Name = "FrmMain";
@@ -236,6 +249,7 @@ namespace LMGacUtil
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LblListMessage;
+        private System.Windows.Forms.Button BtnInstallCom;
     }
 }
 
