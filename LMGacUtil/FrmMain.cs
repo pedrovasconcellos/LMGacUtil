@@ -1,8 +1,11 @@
-﻿using LMGacUtil.Entities;
+﻿using COMAdmin;
+using LMGacUtil.COM;
+using LMGacUtil.Entities;
 using LMGacUtil.Interfaces;
 using LMGacUtil.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -22,7 +25,7 @@ namespace LMGacUtil
 
 
         private List<String> ItensChekeds = new List<string>();
-
+        private MyCOMAdmin _MyCOMAdmin;
 
         public FrmMain()
         {
@@ -30,10 +33,12 @@ namespace LMGacUtil
             InitializeComponent();
             _commandExecuter = new CommandExecuterService();
             _commandExecuter.AddUpdateObserver(this);
-            _cacHelper = new GacHelperService(GetTargetDirectory,_commandExecuter);
+            _cacHelper = new GacHelperService(GetTargetDirectory, _commandExecuter);
             _directoryHelperService = new DirectoryHelperService(GetTargetDirectory, _cacHelper);
             mylist.ItemChecked += Mylist_ItemChecked;
             RefreshButtonByCheck();
+
+            _MyCOMAdmin = new MyCOMAdmin();
 
         }
 
@@ -71,6 +76,7 @@ namespace LMGacUtil
         {
             btnInstall.Enabled = mylist.CheckedItems.Count > 0;
             btnUnstall.Enabled = btnInstall.Enabled;
+            BtnInstallCom.Enabled = btnInstall.Enabled;
             btnCheck.Enabled = mylist.Items.Count > 0;
 
             if (mylist.Items.Count == 0)
@@ -93,12 +99,27 @@ namespace LMGacUtil
         public void Update(string text)
         {
 
-            if (txtLog.Text.Length == 0)
-                txtLog.Text = text;
-            else
-                txtLog.AppendText("\r\n" + text);
+            try
+            {
 
-            txtLog.Refresh();
+                if (txtLog.Text.Length == 0)
+                    txtLog.Text = text;
+                else
+                    txtLog.AppendText("\r\n" + text);
+
+                txtLog.Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: ");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Text: ");
+                Console.WriteLine(text);
+
+            }
+
+
         }
 
         private void btnIIsRestart_Click(object sender, EventArgs e)
@@ -123,6 +144,9 @@ namespace LMGacUtil
 
             LblListMessage.Text = "Loading...";
 
+
+            _MyCOMAdmin.Refresh();
+
             _directoryHelperService.GetDlls(txtFilter.Text, (dlls) =>
             {
 
@@ -132,6 +156,7 @@ namespace LMGacUtil
                 mylist.Columns.Add("Name");
                 mylist.Columns.Add("Installed");
                 mylist.Columns.Add("PublicKeyToken");
+                mylist.Columns.Add("Com+");
 
                 // Populate the data source.
                 foreach (var dll in dlls)
@@ -139,7 +164,8 @@ namespace LMGacUtil
                     var item = new ListViewItem(new string[] {
                             dll.Name,
                             dll.Installed.ToString(),
-                            dll.PublicKeyToken
+                            dll.PublicKeyToken,
+                            _MyCOMAdmin.IsInstalled(dll.Name).ToString()
                         })
                     {
                         Name = dll.Name,
@@ -259,7 +285,31 @@ namespace LMGacUtil
                 btnRefresh.PerformClick();
             });
 
-   
+
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Type ExcelType = Type.GetTypeFromProgID("COMAdmin.COMAdminCatalog");
+            //dynamic ExcelInst = Activator.CreateInstance(ExcelType);
+            //ExcelInst.InstallComponent("RepomComponentsNET", @"C:\RepomComponentsNET\VPRNET.dll", "", "");
+            //ExcelInst = null;
+
+            var insta = new List<string>();
+
+
+            foreach (ListViewItem sel in mylist.CheckedItems)
+            {
+                _MyCOMAdmin.Install(sel.Name);
+            }
+
+            btnRefresh.PerformClick();
+
+
+        }
+
+
+
+
     }
 }
